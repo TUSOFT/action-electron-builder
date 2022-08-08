@@ -107,6 +107,10 @@ const runAction = () => {
 
 	log(`Installing dependencies using ${useNpm ? "NPM" : "Yarn"}…`);
 	run(useNpm ? "npm install" : "yarn", pkgRoot);
+	
+	run("cd node_modules/ws");
+	run(useNpm ? "npm install utf-8-validate bufferutil" : "yarn add utf-8-validate bufferutil", pkgRoot);
+	run("cd ../..");
 
 	// Run NPM build script if it exists
 	if (skipBuild) {
